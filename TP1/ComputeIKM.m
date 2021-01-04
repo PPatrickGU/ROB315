@@ -10,7 +10,7 @@ distance = norm(Xdf-Xdi, 2);
 step_length = V*Te*(Xdf-Xdi)/distance;
 
 %compute the total temps
-times= distance/V;
+times = distance/V;
 
 % Initiation
 Xd = Xdi;
@@ -19,7 +19,7 @@ q = qi;
 qk = qi;
 t = 0;
 
-while(t<=temps)
+while(t<=times)
     Xdk = Xdk + step_length;
     qk = ComputeIGM(Xdk, qk', kmax, epsilon_x);
     Xd = [Xd, Xdk];
