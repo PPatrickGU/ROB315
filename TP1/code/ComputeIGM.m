@@ -7,7 +7,7 @@ r = [0.5, 0, 0, 0.2, 0, 0];
 
 k = 0;
 q = q0';
-alpha_step = 0.005;
+% alpha_step = 0.005;
 
 for k = 1:k_max
     theta = [q(1), q(2), q(3)+pi/2, q(4), q(5), q(6)];
@@ -17,14 +17,13 @@ for k = 1:k_max
     
     % compute cartesian error
     e = Xd - fq;
-    
     J = ComputeJac(alpha, d, theta, r);
     Ji = J(1:3, :);
     
-    % Gradient-based method
+%     % Gradient-based method
 %     q = q + alpha_step*Ji'*e;
 
-%     % Newton-Raphson method
+    % Newton-Raphson method
     q = q + pinv(Ji)*e;
    
     if (norm(e,2) < epsilon_x) 

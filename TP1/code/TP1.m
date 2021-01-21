@@ -27,7 +27,6 @@ theta_ = w_theta(4)
 figure
 set(gcf,'Name','Plot Frame')
 PlotFrame(theta);
-title('Frame of robots')
 
 %% Q6
 % Speed  of joints 
@@ -62,7 +61,7 @@ g_0E = g_06 * g_6E;
 % Visualisation of the robot
 figure
 set(gcf,'Name','Plot Ellipsoides ')
-PlotFrame(theta)
+PlotFrame(qi)
 hold on;
 
 pf = g_0E(1:3,4)
@@ -70,12 +69,11 @@ w_theta = tform2axang(g_0E);
 w = w_theta(1:3);
 theta_ = w_theta(4);
 
-% Ellipsoides of speed
-% [x,y,z] = 	(xc,yc,zc,xr,yr,zr,n)
+% Velocities Ellipsoides 
 [x,y,z] = ellipsoid(pf(1),pf(2),pf(3),AxisValues(1),AxisValues(2),AxisValues(3));
 Ellipsoide = surf(x,y,z);
 alpha 0.5;
-Ellipsoide.EdgeColor = 'none';
+Ellipsoide.EdgeColor = 'black';
 rotate(Ellipsoide, w, radtodeg(theta_), pf);
 title('Velocities Ellipsoides');
 
@@ -113,7 +111,6 @@ q0 = [-1.57, 0.00, -1.47, -1.47, -1.47, -1.47]';
 [XTot, qTot] = ComputeIKM(Xdi, Xdf, V, Te, q0);
 
 PlotTrajec(XTot, qTot);
-title('Trajectory of robots')
 
 %% Q10
 % Parameters 
@@ -128,5 +125,4 @@ q0 = [-1.57, 0.00, -1.47, -1.47, -1.47, -1.47]';
 
 [XTot, qTot] = ComputeIKMlimites(Xdi, Xdf, V, Te, q0, qmin, qmax);
 PlotTrajec(XTot, qTot);
-title('Trajectory of robots')
 PlotEvolution(qTot, qmin, qmax)
